@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-import requests
+import sys
 import json
+import shutil
+import requests
 
 
 def get_board(board_id, key, token):
@@ -84,10 +86,23 @@ def count_user_of_board(
     return total_used
 
 
+def generate_invoice(total_hours):
+    with open('invoice.json', 'r') as f:
+        invoice_data = json.load(f)
+        invoice_data['items'][0]['quantity'] = total_hours
+        r = requests.post('https://invoice-generator.com', json=invoice_data, stream=True)
+        if r.status_code == 200:
+            filename = f'invoice-{invoice_data["number"]}.pdf'
+            with open(filename, 'wb') as f:
+                shutil.copyfileobj(r.raw, f)
+                print(f'{filename} has been sucessfully generated')
+
+
 if __name__ == '__main__':
     with open('boards.json', 'r') as f:
         boards = json.load(f)
 
+    total_hours = 0
     for board in boards:
         total_used = count_user_of_board(
             board['id'],
@@ -96,4 +111,11 @@ if __name__ == '__main__':
             board['date'],
             board['username'],
         )
-        print(f'{board["username"]} on board {board["name"]} on month {board["date"]} {round(total_used/60, 2)}') # noqa
+        total_hours += total_used / 60
+        print(f'{board["username"]} on board {board["name"]} on month {board["date"]} {round(total_used / 60, 2)}') # noqa
+    total_hours = round(total_hours, 2)
+    print(f'Total hours: {total_hours}')
+
+    for arg in sys.argv[1:]:
+        if arg == '-i' or arg == '--invoice':
+            generate_invoice(total_hours)

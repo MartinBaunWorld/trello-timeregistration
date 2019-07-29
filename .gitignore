@@ -1,2 +1,4 @@
 *.pyc
+*.pdf
 boards.json
+invoice.json

@@ -1,0 +1,15 @@
+{
+  "from": "John Smith",
+  "to": "Company Name\nAddress line\nCity, Region, ZIP",
+  "number": "2019-07",
+  "currency": "EUR",
+  "items": [
+    {
+      "name": "Software development",
+      "quantity": 0,
+      "unit_cost": 0
+    }
+  ],
+  "notes": "This invoice has been submitted in accordance with the Agreement",
+  "terms": "Bank account details"
+}
