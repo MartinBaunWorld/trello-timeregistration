@@ -79,8 +79,11 @@ def count_user_of_board(
             comments = filter_date(date, comments)
             comments = filter_used(comments)
             for c in comments:
-                total_used += \
-                    int(c['data']['text'].lower().strip().strip('used '))
+                try:
+                    total_used += \
+                        int(c['data']['text'].lower().strip().strip('used '))
+                except: # noqa
+                    print(f'Error in line {c["data"]["text"]}')
     return total_used
 
 
