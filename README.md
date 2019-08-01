@@ -10,3 +10,7 @@ Just add `used 10` to add 10 minutes to your time sheet on a given task.
 2. `cp boards-example.json boards.json` and open boards.json and edit the name, api key, token, board id (you can find that when you browse the site)
 3. run `./sum_trello_time.py`
 
+## Invoicing
+
+1. `cp invoice-example.json invoice.json` and edit invoice.json with data you need
+2. Run `./make-invoice.py <total_hours> <invoice_number>`
