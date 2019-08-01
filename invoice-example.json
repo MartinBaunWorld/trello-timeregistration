@@ -1,0 +1,13 @@
+{
+  "from": "Your name",
+  "to": "Company name (multi-line allowed)",
+  "currency": "EUR",
+  "items": [
+    {
+      "name": "Software development",
+      "unit_cost": 0
+    }
+  ],
+  "notes": "Any comments you would like to include to invoice (optional)",
+  "terms": "Payment system, bank account details, etc (optional)"
+}
