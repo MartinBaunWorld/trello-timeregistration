@@ -1,11 +1,14 @@
 {
-  "from": "Your name",
+  "your_name": "Thomas Anderson",
+  "from": "Invoice From",
   "to": "Company name (multi-line allowed)",
   "currency": "EUR",
+  "number": "1934",
   "items": [
     {
       "name": "Software development",
-      "unit_cost": 0
+      "unit_cost": 10,
+      "quantity": 1
     }
   ],
   "notes": "Any comments you would like to include to invoice (optional)",
